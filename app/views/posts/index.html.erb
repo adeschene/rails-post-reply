@@ -1,13 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%# Home page title %>
+<div class="container w-100 text-center mt-5 mb-5">
+  <h1>RoR Bootcamp Message Board</h1>
+</div>
 
-<h1>Posts</h1>
-
-<%= link_to "New Post", new_post_path %>
-
-<ul>
+<%# List of posts as clickable links %>
+<div class="list-group mb-5">
+  <%# A fully-disabled link; used as a header for the list %>
+  <a href="#" class="list-group-item list-group-item-secondary text-center pe-none py-2">
+  	<span class="fs-5">Posts:</span>
+  </a>
+  <%# Goes thru each post and creates a clickable list-group-item link %>
   <% @posts.each do |post| %>
-    <li>
-      <%= link_to post.title, post %>
-    </li>
+    <%= link_to post.title, post, class: "list-group-item list-group-item-action list-group-item-light py-3" %>
   <% end %>
-</ul>
+</div>
+
+<%# New post form rendered in a card %>
+<div class="card w-100 mx-auto mb-5 text-dark bg-light">
+  <div class="card-header">
+  	<p class="card-text text-center">New post</p>
+  </div>
+  <div class="card-body">
+    <%# Needs a blank Post instance to create the form, so create it and pass it in %>
+    <%= render "form", post: Post.new %>
+  </div>
+</div>

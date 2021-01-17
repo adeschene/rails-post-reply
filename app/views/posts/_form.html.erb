@@ -1,16 +1,11 @@
+<%# Create a form for post that has placeholders %>
 <%= form_with model: post do |form| %>
-  <div>
-  	<%= form.text_field :title, placeholder: "Subject" %>
-  	<% post.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  	<%= form.text_area :body, placeholder: "Body" %>
-  	<% post.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+  <div class="form-group mb-3">
+  	<%= form.text_field :title, class: "form-control mb-1", placeholder: "Subject" %>
+  	<%= form.text_area :body, class: "form-control", placeholder: "Body", rows: "5" %>
   </div>
 
-  <div>
-  	<%= form.submit %>
+  <div class="form-group ms-2">
+  	<%= form.submit "Submit", class: "btn btn-secondary mb-3" %>
   </div>
 <% end %>

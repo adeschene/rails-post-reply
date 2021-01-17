@@ -1,11 +1,48 @@
-<h1><%= @post.title %></h1><br>
-<p><%= @post.body %></p>
-<%= link_to "Edit", edit_post_path(@post) %>
-<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+<%# Display the post and give the option to edit and delete it %>
+<div class="card w-100 mt-5 mb-5 mx-auto text-dark bg-light">
+  <div class="card-header fs-5 fw-bold py-3">
+  	<%= @post.title %>
+  </div>
+  <div class="card-body mb-1">
+    <p class="card-text"><%= simple_format(@post.body) %></p>
+    <div class="text-center">
+	  <%= link_to "Edit", edit_post_path(@post), class: 'btn btn-secondary px-4 mx-1' %>
+	  <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger mx-1' %>
+	</div>
+  </div>
+</div>
 
-<%# fsdfsdf %>
-<h2>Replies:</h2>
-<%= render @post.replies %>
+<%# Check if there are an replies for this post %>
+<% if @post.replies.empty? %>
+  <%# If the replies array is empty, make user aware with a card %>
+  <div class="card w-75 mx-auto">
+    <div class="card-header text-center">
+      <p class="card-text">No replies...</p>
+    </div>
+  </div>
+<% else %>
+  <%# If there are replies, display all the replies %>
+  <div class="card w-75 mx-auto text-dark bg-light">
+    <div class="card-header text-center">
+      <p class="card-text">Replies:</p>
+    </div>
+  </div>
+  <%# Renders each reply one by one using the partial expansion feature %>
+  <%# It's like rendering replies/_reply.html.erb with each reply as the param %>
+  <%= render @post.replies %>
+<% end %>
 
-<h2>New reply:</h2>
-<%= render "replies/form" %>
+<%# New reply form rendered in a card %>
+<div class="card w-100 mx-auto mt-5 mb-3 text-dark bg-light">
+  <div class="card-header">
+  	<p class="card-text text-center">New reply</p>
+  </div>
+  <div class="card-body">
+    <%= render "replies/form" %>
+  </div>
+</div>
+
+<%# Adds a back button at the bottom that takes user back to root page %>
+<div class="container mb-5 text-center">
+  <%= link_to "Back", root_path, class: 'btn btn-dark px-5' %>
+</div>

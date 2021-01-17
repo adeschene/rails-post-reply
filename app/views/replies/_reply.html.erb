@@ -1,5 +1,10 @@
-<div>
-  <%= reply.name %><br>
-  <%= reply.body %>
-  <%= link_to 'Delete', [reply.post, reply], method: :delete, data: { confirm: "Are you sure?" } %>
+<%# Display the reply with " says:" appended to name; provide delete button %>
+<div class="card mb-2 w-75 mx-auto">
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted"><%= reply.name %> says:</h6>
+    <p class="card-text"><%= simple_format(reply.body) %></p>
+    <div class="text-center">
+      <%= link_to 'Delete', [reply.post, reply], method: :delete, data: { confirm: "Are you sure?" }, class: "btn-sm btn-danger" %>
+    </div>
+  </div>
 </div>
