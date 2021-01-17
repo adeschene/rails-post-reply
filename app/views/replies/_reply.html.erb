@@ -1,0 +1,5 @@
+<div>
+  <%= reply.name %><br>
+  <%= reply.body %>
+  <%= link_to 'Delete', [reply.post, reply], method: :delete, data: { confirm: "Are you sure?" } %>
+</div>

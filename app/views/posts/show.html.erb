@@ -1,0 +1,11 @@
+<h1><%= @post.title %></h1><br>
+<p><%= @post.body %></p>
+<%= link_to "Edit", edit_post_path(@post) %>
+<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<%# fsdfsdf %>
+<h2>Replies:</h2>
+<%= render @post.replies %>
+
+<h2>New reply:</h2>
+<%= render "replies/form" %>
