@@ -13,7 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :production do
-  gem 'pg', '~> 0.18.4'
+  gem 'pg', '~> 1.2', '>= 1.2.3'
 end
 
 group :development, :test do
